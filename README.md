@@ -11,6 +11,7 @@ a package; its README says what goes there.
   mrepo/           its mrepo, by layers
   test/            its tests and test sets
   <name>/          a further unit (another mrepo), by its URI part name
+  example/         optional: an example, in the same structure
   modules/         its code, assembled, once at the top
 ```
 
@@ -18,10 +19,9 @@ a package; its README says what goes there.
 |---|---|
 | [mrepo/](mrepo/) | an mrepo's definition, by layers |
 | [test/](test/) | tests, a folder each, and the sets |
-| [unit/](unit/) | a further unit, the same structure again |
+| [name/](name/) | a further unit, the same structure again |
+| [example/](example/) | a whole package, as an example |
 | [modules/](modules/) | the code the package carries |
-
-The example: [haiccing/base-package-boot](https://github.com/haiccing/base-package-boot).
 
 ## The rules
 
@@ -29,6 +29,8 @@ The example: [haiccing/base-package-boot](https://github.com/haiccing/base-packa
 - A structure unit is the same at every level: a package, an mrepo inside
   it, a test. Each part is optional.
 - Every unit's entry is `run.js`.
+- `example/`, where wanted: an example in the same structure, never a
+  reference to another package.
 - No install code in a unit: building an mrepo is the framework's.
 - What a person reads is what the repository will hold: expanded folders,
   carried in the package's bundle and read from it by path.
@@ -38,13 +40,13 @@ The example: [haiccing/base-package-boot](https://github.com/haiccing/base-packa
 
 ```json
 {
-  "name": "base-package-boot",
-  "description": "HAICC's boot.",
+  "name": "base-package-example",
+  "description": "An example package.",
   "private": true,
   "license": "MIT",
   "type": "module",
   "main": "run.js",
-  "modules": ["pear-full-square/mrepo-base-runtime"],
+  "modules": ["<org>/<module>"],
   "scripts": { "test": "bare test/run.js" }
 }
 ```
